@@ -9,6 +9,7 @@ com/app/armlangtextanalyzer/service/dto/POS.class
 com/app/armlangtextanalyzer/service/dto/Lemma.class
 com/app/armlangtextanalyzer/service/dto/Word.class
 com/app/armlangtextanalyzer/exception/NotFoundException.class
+META-INF/spring-configuration-metadata.json
 com/app/armlangtextanalyzer/service/WordService.class
 com/app/armlangtextanalyzer/service/dto/PrefixType.class
 com/app/armlangtextanalyzer/controller/WordController.class
