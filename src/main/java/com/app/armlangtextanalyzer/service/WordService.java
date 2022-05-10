@@ -89,9 +89,9 @@ public class WordService {
         Map<String, Word> analysedWords = new HashMap<>();
 
         Set<String> notAnalysedWords = new HashSet<>();
-        List<Lemma> verbs = fileService.getVerbs();
+        final List<Lemma>[] verbs = new List[]{fileService.getVerbs()};
         List<Lemma> nouns = fileService.getNouns();
-        verbs.addAll(nouns);
+        verbs[0].addAll(nouns);
 
         filteredWords.forEach(s -> {
             if (words.get(s) != null) {
@@ -106,27 +106,32 @@ public class WordService {
         });
 
         Set<String> strings = new HashSet<>();
-//        notAnalysedWords.forEach(s -> {
-//            boolean flag = true;
-//            for (Lemma lemma : verbs) {
-//                if (lemma.getForms().get(s) != null || lemma.getLemma().equals(s)) {
-//                    List<Explanation> explanations = Collections.emptyList();
-//                    if (words.get(lemma.getLemma()) != null)
-//                        explanations = words.get(lemma.getLemma()).getExplanations();
-//                    Word word = new Word();
-//                    word.setWord(s);
-//                    word.setLemma(lemma.getLemma());
-//                    word.setExplanations(explanations);
-//                    analysedWords.putIfAbsent(s, word);
-//                    flag = false;
-//                    break;
-//                }
-//            }
-//            if (flag) {
-//                strings.add(s);
-//            }
-//
-//        });
+        notAnalysedWords.forEach(s -> {
+            verbs[0] = verbs[0].stream()
+                    .filter(lemma -> s.charAt(0) == lemma.getLemma().charAt(0) || s.charAt(1) == lemma.getLemma().charAt(1))
+                    .collect(Collectors.toList());
+            boolean flag = true;
+            for (Lemma lemma : verbs[0]) {
+                if (lemma.getForms().get(s) != null || lemma.getLemma().equals(s)) {
+                    List<Explanation> explanations = Collections.emptyList();
+                    if (words.get(lemma.getLemma()) != null)
+                        explanations = words.get(lemma.getLemma()).getExplanations();
+                    Word word = new Word();
+                    word.setWord(s);
+                    word.setLemma(lemma.getLemma());
+                    word.setExplanations(explanations);
+                    analysedWords.putIfAbsent(s, word);
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                strings.add(s);
+            }
+
+        });
+
+
 
         log.info("rough analyse");
         return analyseByHolov(originalText, strings, title,  analysedWords, withoutStopWords, words, filteredWords.size());

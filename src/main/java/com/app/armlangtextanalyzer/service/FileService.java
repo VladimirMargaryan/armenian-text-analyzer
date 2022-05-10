@@ -131,7 +131,7 @@ public class FileService {
         File folder = getFolder();
         File[] files = new File[0];
         if (folder != null) {
-            files = folder.listFiles(pathname -> pathname.getName().endsWith("stopword.csv"));
+            files = folder.listFiles(pathname -> pathname.getName().equals("stopword.csv"));
         }
 
         if (files != null) {
