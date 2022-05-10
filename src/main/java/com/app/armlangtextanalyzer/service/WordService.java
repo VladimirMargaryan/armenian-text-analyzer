@@ -92,7 +92,6 @@ public class WordService {
         final List<Lemma>[] verbs = new List[]{fileService.getVerbs()};
         List<Lemma> nouns = fileService.getNouns();
         verbs[0].addAll(nouns);
-        nouns.clear();
 
         filteredWords.forEach(s -> {
             if (words.get(s) != null) {
@@ -132,8 +131,8 @@ public class WordService {
 
         });
 
-        verbs[0].clear();
-        System.gc();
+
+
         log.info("rough analyse");
         return analyseByHolov(originalText, strings, title,  analysedWords, withoutStopWords, words, filteredWords.size());
     }
@@ -172,8 +171,6 @@ public class WordService {
                 notAnalysedAfterHolov.add(s);
         });
 
-        notAnalysedWords.clear();
-        System.gc();
         log.info("analyse holov");
 
         return analyseBySuffix(originalText, notAnalysedAfterHolov, title,  analysedWords, withoutStopWords, words, filteredWordsSize);
@@ -211,8 +208,6 @@ public class WordService {
                 notAnalysedAfterSuffix.add(s);
         });
 
-        notAnalysedWords.clear();
-        System.gc();
         log.info("suffix analyse");
 
         return analyseByPrefix(originalText, notAnalysedAfterSuffix, title,  analysedWords, withoutStopWords, words, filteredWordsSize);
@@ -252,8 +247,6 @@ public class WordService {
                 notAnalysedAfterPrefix.add(s);
         });
 
-        notAnalysedWords.clear();
-        System.gc();
         log.info("by suffix");
         return getBySuggesting(originalText, notAnalysedAfterPrefix, title, analysedWords, withoutStopWords , words, filteredWordsSize);
     }
@@ -281,8 +274,6 @@ public class WordService {
                 notAnalysedWordsAfterSuggestion.add(s);
         });
 
-        notAnalysedAfterPrefix.clear();
-        System.gc();
         log.info("suggestion");
         return buildResponse(originalText, notAnalysedWordsAfterSuggestion.size(), title, analysedWords, withoutStopWords, filteredWordsSize);
     }
@@ -317,10 +308,6 @@ public class WordService {
         response.setTextCountWithoutStopWord(filteredWordsSize);
         response.setChart(chart(analysedWordsAndExplanations, withoutStopWords));
         response.setWordAndColors(wordsAndColors(analysedWords));
-        analysedWords.clear();
-        withoutStopWords.clear();
-        analysedWordsAndExplanations.clear();
-        System.gc();
         log.info("response build");
         return response;
     }
