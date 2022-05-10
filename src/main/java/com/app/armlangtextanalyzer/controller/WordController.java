@@ -34,14 +34,13 @@ public class WordController {
 
     @PostMapping("/parse/pdf")
     public String uploadPdf(@RequestParam("file") MultipartFile file, Model model) throws IOException {
-        log.info("uploaded page route");
         if (!file.isEmpty() && Objects.equals(file.getContentType(), "application/pdf")) {
             Response response = wordService.readPdfAndAnalyse(file);
             String statistic = "Բառաքանակը: " + response.getOriginalTextCount() + "\n" +
                     "Բառաքանակը առանց «կանգ-առ» բառերի: " + response.getTextCountWithoutStopWord() + "\n" +
                     "Մշակված բառերի քանակը: " + response.getAnalysedWordCount() + "\n" +
                     "Չմշակված բառերի քանակը: " + response.getNotAnalysedWordCount();
-
+            log.info("uploaded page route");
             model.addAttribute("statistic", statistic);
             model.addAttribute("wordColorJson", response.getWordAndColors().toJSONString());
             model.addAttribute("explanationAndColors", response.getExplanationAndColors().toJSONString());

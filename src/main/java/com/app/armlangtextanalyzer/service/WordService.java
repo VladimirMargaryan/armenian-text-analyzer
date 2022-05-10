@@ -1,6 +1,7 @@
 package com.app.armlangtextanalyzer.service;
 
 import com.app.armlangtextanalyzer.service.dto.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.json.simple.JSONArray;
@@ -15,6 +16,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class WordService {
 
     private final FileService fileService;
@@ -44,6 +46,7 @@ public class WordService {
             resultMap.put("originalText", originalText);
             resultMap.put("normalizedText", normalizedText);
             resultMap.put("title", title);
+            log.info("pdf read");
             document.close();
         }
 
@@ -71,6 +74,8 @@ public class WordService {
 
         Map<String, Word> words = fileService.getWords().stream()
                 .collect(Collectors.toMap(Word::getWord, Function.identity()));
+
+        log.info("filtered");
 
         return roughAnalyse(map.get("originalText"), map.get("title"),  filteredWords, words, withoutStopWords);
     }
@@ -123,6 +128,7 @@ public class WordService {
 
         });
 
+        log.info("rough analyse");
         return analyseByHolov(originalText, strings, title,  analysedWords, withoutStopWords, words, filteredWords.size());
     }
 
@@ -160,6 +166,8 @@ public class WordService {
                 notAnalysedAfterHolov.add(s);
         });
 
+        log.info("analyse holov");
+
         return analyseBySuffix(originalText, notAnalysedAfterHolov, title,  analysedWords, withoutStopWords, words, filteredWordsSize);
     }
 
@@ -194,6 +202,8 @@ public class WordService {
             if (flag)
                 notAnalysedAfterSuffix.add(s);
         });
+
+        log.info("suffix analyse");
 
         return analyseByPrefix(originalText, notAnalysedAfterSuffix, title,  analysedWords, withoutStopWords, words, filteredWordsSize);
     }
@@ -232,6 +242,7 @@ public class WordService {
                 notAnalysedAfterPrefix.add(s);
         });
 
+        log.info("by suffix");
         return getBySuggesting(originalText, notAnalysedAfterPrefix, title, analysedWords, withoutStopWords , words, filteredWordsSize);
     }
 
@@ -258,6 +269,7 @@ public class WordService {
                 notAnalysedWordsAfterSuggestion.add(s);
         });
 
+        log.info("suggestion");
         return buildResponse(originalText, notAnalysedWordsAfterSuggestion.size(), title, analysedWords, withoutStopWords, filteredWordsSize);
     }
 
@@ -291,6 +303,7 @@ public class WordService {
         response.setTextCountWithoutStopWord(filteredWordsSize);
         response.setChart(chart(analysedWordsAndExplanations, withoutStopWords));
         response.setWordAndColors(wordsAndColors(analysedWords));
+        log.info("response build");
         return response;
     }
 
