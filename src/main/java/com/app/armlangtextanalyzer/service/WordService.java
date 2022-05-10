@@ -106,27 +106,27 @@ public class WordService {
         });
 
         Set<String> strings = new HashSet<>();
-        notAnalysedWords.forEach(s -> {
-            boolean flag = true;
-            for (Lemma lemma : verbs) {
-                if (lemma.getForms().get(s) != null || lemma.getLemma().equals(s)) {
-                    List<Explanation> explanations = Collections.emptyList();
-                    if (words.get(lemma.getLemma()) != null)
-                        explanations = words.get(lemma.getLemma()).getExplanations();
-                    Word word = new Word();
-                    word.setWord(s);
-                    word.setLemma(lemma.getLemma());
-                    word.setExplanations(explanations);
-                    analysedWords.putIfAbsent(s, word);
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag) {
-                strings.add(s);
-            }
-
-        });
+//        notAnalysedWords.forEach(s -> {
+//            boolean flag = true;
+//            for (Lemma lemma : verbs) {
+//                if (lemma.getForms().get(s) != null || lemma.getLemma().equals(s)) {
+//                    List<Explanation> explanations = Collections.emptyList();
+//                    if (words.get(lemma.getLemma()) != null)
+//                        explanations = words.get(lemma.getLemma()).getExplanations();
+//                    Word word = new Word();
+//                    word.setWord(s);
+//                    word.setLemma(lemma.getLemma());
+//                    word.setExplanations(explanations);
+//                    analysedWords.putIfAbsent(s, word);
+//                    flag = false;
+//                    break;
+//                }
+//            }
+//            if (flag) {
+//                strings.add(s);
+//            }
+//
+//        });
 
         log.info("rough analyse");
         return analyseByHolov(originalText, strings, title,  analysedWords, withoutStopWords, words, filteredWords.size());
