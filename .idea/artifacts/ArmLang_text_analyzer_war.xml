@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ArmLang-text-analyzer:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ArmLang-text-analyzer</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ArmLang-text-analyzer-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ArmLang-text-analyzer:war exploded" />
+    </root>
+  </artifact>
+</component>

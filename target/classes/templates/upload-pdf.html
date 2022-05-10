@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Armenian</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<style>
+		.hide{
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.show{
+			display: block;
+		}
+
+		.fade-out{
+			opacity: 0;
+		}
+
+	</style>
+</head>
+<body class="upload" id="body">
+<div class="container">
+	<div id="lead">
+		<img th:src="@{/image/armenian-alphabet.png}" alt="" class="image" src=""/>
+		<p class="title">
+			<b>
+				ՀԱՅԵՐԵՆ ՏԵՔՍՏԻ ՎԵՐԼՈՒԾԻՉ
+			</b>
+		</p>
+		<form th:action="@{/words/parse/pdf}" method="POST" enctype="multipart/form-data", id="pdf">
+			<input type="file" name="file" th:accept=".pdf" id="file"/>
+			<p>Ներբեռնեք pdf ֆայլը այստեղ</p>
+			<button type="submit" id="button" >Ուղարկել</button>
+		</form>
+
+	</div>
+	<img th:src="@{/image/Bubble-Preloader.gif}" alt="" id="spinner" class="hide" src="">
+</div>
+<script>
+	const div = document.getElementById('lead');
+	const spinner = document.getElementById('spinner');
+
+	div.addEventListener('submit', (e) => {
+		div.classList.toggle('fade-out');
+		spinner.classList.toggle('show');
+	});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+body{
+  background: url("../image/background.jpeg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.upload{
+  font-family: Helvetica, sans-serif;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+form{
+  position: absolute;
+  top: 70%;
+  left: 70%;
+  margin-top: -80px;
+  margin-left: -180px;
+  width: 500px;
+  height: 200px;
+  border: 4px dashed #2a2424;
+}
+.image{
+  position: relative;
+  top: 10%;
+  left: 18%;
+  margin-top: 15px;
+  margin-left: -220px;
+  max-width: 670px;
+  max-height: 790px;
+  width: 100%;
+  height: 100%;
+
+}
+
+.title{
+  font-size:3vw;
+  position: absolute;
+  top: 3%;
+  left: 65%;
+  margin-top: 25px;
+  margin-left: -190px;
+}
+form p{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 170px;
+  color: #2a2424;
+  font-family: Arial, serif;
+}
+form input{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+}
+form button{
+  margin: 0;
+  color: #fff;
+  background: #2a2424;
+  border: none;
+  width: 508px;
+  height: 35px;
+  margin-top: -20px;
+  margin-left: -4px;
+  border-radius: 4px;
+  border-bottom: 4px solid #2a2424;
+  transition: all .2s ease;
+  outline: none;
+}
+form button:hover{
+  background: #2a2424;
+	color: #f2f2f2f2;
+}
+form button:active{
+  border:0;
+}
+
+#box-1 {
+  width: 50%;
+  height: 700px;
+  margin-left: 2px;
+  margin-top: 40px;
+  background-color: white;
+  box-shadow: #254C58 1px 0;
+  border: #3C7D91 5px double;
+  padding: 10px 10px 10px 10px;
+  overflow-y: scroll;
+}
+.float-container {
+  display: flex;
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.inner{
+  display: flex;
+  border: 3px solid #fff;
+}
+
+.squares{
+  width: 30%;
+  height: 150px;
+  padding-right: 2px;
+
+}
+
+.statistic{
+  width: 70%;
+  height: 150px;
+  padding-right: 2px;
+
+}
+
+#box-2{
+  margin-top: 40px;
+  width: 50%;
+  height: 400px;
+  float: right;
+  padding-right: 2px;
+}
+
+.squares{
+  padding-left: 30px;
+}
+
+.statistic{
+  float: right;
+  font-weight: bold;
+  white-space: pre-wrap;
+  margin-right: 20px;
+  margin-top: 40px;
+}
+
+#container{
+  margin-top: 110px;
+}
+
+[data-tooltip] {
+  display: inline-block;
+  position: relative;
+  cursor: help;
+  padding: 4px;
+}
+/* Tooltip styling */
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  display: none;
+  white-space: pre-wrap;
+  position: absolute;
+  background: #d2d2d2;
+  color: black;
+  padding: 4px 8px;
+  min-width:max-content;
+  border-radius: 4px;
+}
+/* Dynamic horizontal centering */
+[data-tooltip-position="top"]:before,
+[data-tooltip-position="bottom"]:before {
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+/* Dynamic vertical centering */
+[data-tooltip-position="right"]:before,
+[data-tooltip-position="left"]:before {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+[data-tooltip-position="top"]:before {
+  bottom: 100%;
+  margin-bottom: 6px;
+}
+
+/* Tooltip arrow styling/placement */
+[data-tooltip]:after {
+  display: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+/* Dynamic horizontal centering for the tooltip */
+[data-tooltip-position="top"]:after,
+[data-tooltip-position="bottom"]:after {
+  left: 50%;
+  margin-left: -6px;
+}
+/* Dynamic vertical centering for the tooltip */
+[data-tooltip-position="right"]:after,
+[data-tooltip-position="left"]:after {
+  top: 50%;
+  margin-top: -6px;
+}
+[data-tooltip-position="top"]:after {
+  bottom: 100%;
+  border-width: 6px 6px 0;
+  border-top-color: #8d8d8d;
+}
+/* Show the tooltip when hovering */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  display: block;
+  z-index: 50;
+}
+
+
+.underline--magical {
+  background-repeat: no-repeat;
+  background-size: 100% 0.3em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+.underline--magical:hover {
+  background-size: 100% 88%;
+}
+
+.square {
+  position: relative;
+  margin-left: 20px;
+}
+.square:before{
+  position: absolute;
+  left: -20px;
+  content: "";
+  height:20px;
+  width:20px;
+  margin-bottom:15px;
+  border:1px solid black;
+}
