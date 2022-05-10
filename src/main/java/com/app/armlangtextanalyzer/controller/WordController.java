@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.*;
 
 @Controller
+@Slf4j
 @RequestMapping("/words")
 public class WordController {
 
@@ -26,12 +27,14 @@ public class WordController {
 
     @GetMapping("/parse")
     public String parsePage() {
+        log.info("main page route");
         return "upload-pdf";
     }
 
 
     @PostMapping("/parse/pdf")
     public String uploadPdf(@RequestParam("file") MultipartFile file, Model model) throws IOException {
+        log.info("uploaded page route");
         if (!file.isEmpty() && Objects.equals(file.getContentType(), "application/pdf")) {
             Response response = wordService.readPdfAndAnalyse(file);
             String statistic = "Բառաքանակը: " + response.getOriginalTextCount() + "\n" +
