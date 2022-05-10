@@ -172,6 +172,8 @@ public class WordService {
                 notAnalysedAfterHolov.add(s);
         });
 
+        notAnalysedWords.clear();
+        System.gc();
         log.info("analyse holov");
 
         return analyseBySuffix(originalText, notAnalysedAfterHolov, title,  analysedWords, withoutStopWords, words, filteredWordsSize);
@@ -209,6 +211,8 @@ public class WordService {
                 notAnalysedAfterSuffix.add(s);
         });
 
+        notAnalysedWords.clear();
+        System.gc();
         log.info("suffix analyse");
 
         return analyseByPrefix(originalText, notAnalysedAfterSuffix, title,  analysedWords, withoutStopWords, words, filteredWordsSize);
@@ -248,6 +252,8 @@ public class WordService {
                 notAnalysedAfterPrefix.add(s);
         });
 
+        notAnalysedWords.clear();
+        System.gc();
         log.info("by suffix");
         return getBySuggesting(originalText, notAnalysedAfterPrefix, title, analysedWords, withoutStopWords , words, filteredWordsSize);
     }
@@ -275,6 +281,8 @@ public class WordService {
                 notAnalysedWordsAfterSuggestion.add(s);
         });
 
+        notAnalysedAfterPrefix.clear();
+        System.gc();
         log.info("suggestion");
         return buildResponse(originalText, notAnalysedWordsAfterSuggestion.size(), title, analysedWords, withoutStopWords, filteredWordsSize);
     }
