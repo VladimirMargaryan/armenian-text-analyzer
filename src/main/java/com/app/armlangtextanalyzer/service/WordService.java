@@ -92,6 +92,7 @@ public class WordService {
         final List<Lemma>[] verbs = new List[]{fileService.getVerbs()};
         List<Lemma> nouns = fileService.getNouns();
         verbs[0].addAll(nouns);
+        nouns.clear();
 
         filteredWords.forEach(s -> {
             if (words.get(s) != null) {
@@ -131,8 +132,8 @@ public class WordService {
 
         });
 
-
-
+        verbs[0].clear();
+        System.gc();
         log.info("rough analyse");
         return analyseByHolov(originalText, strings, title,  analysedWords, withoutStopWords, words, filteredWords.size());
     }
