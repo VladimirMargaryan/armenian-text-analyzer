@@ -308,6 +308,10 @@ public class WordService {
         response.setTextCountWithoutStopWord(filteredWordsSize);
         response.setChart(chart(analysedWordsAndExplanations, withoutStopWords));
         response.setWordAndColors(wordsAndColors(analysedWords));
+        analysedWords.clear();
+        withoutStopWords.clear();
+        analysedWordsAndExplanations.clear();
+        System.gc();
         log.info("response build");
         return response;
     }
