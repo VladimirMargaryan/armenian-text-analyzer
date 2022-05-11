@@ -66,9 +66,9 @@
         let word = text[x].toLowerCase().replace(/[^0-9ա-ֆև ]/gi, '');
         let span = '';
         for (let i = 0; i < wordColorJson.length; i++) {
-            if (word === wordColorJson[i].word) {
+            if (word === wordColorJson[i].text) {
                 let color = wordColorJson[i].color;
-                let tooltip = "Բառը: " + wordColorJson[i].word +
+                let tooltip = "Բառը: " + wordColorJson[i].text +
                     "&#xa;" + "Արմատը: " + wordColorJson[i].lemma +
                     "&#xa;" + "Խոսքի մասը: " + wordColorJson[i].explanation;
 

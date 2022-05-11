@@ -144,7 +144,6 @@ form button:active{
 [data-tooltip] {
   display: inline-block;
   position: relative;
-  cursor: help;
   padding: 4px;
 }
 /* Tooltip styling */
