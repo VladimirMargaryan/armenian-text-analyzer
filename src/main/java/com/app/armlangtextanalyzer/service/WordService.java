@@ -53,7 +53,8 @@ public class WordService {
 
             List<String> filteredWords = Arrays.stream(normalizedText.split(" ")).collect(Collectors.toList());
 
-            ProcessBuilder pb = new ProcessBuilder("python3", "analyse.py", normalizedText);
+            ProcessBuilder pb = new ProcessBuilder("python3",
+                    "src/main/java/com/app/armlangtextanalyzer/pyscripts/analyse.py", normalizedText);
             Process p = pb.start();
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String result;
