@@ -269,6 +269,7 @@ public class WordService {
          result.entrySet()
                 .stream()
                 .sorted((Map.Entry.comparingByValue(Comparator.naturalOrder())))
+                 .skip(Math.max(0, result.size() - 14))
                 .forEach(entry -> {
                     JSONObject object = new JSONObject();
                     object.put("name", entry.getKey());
