@@ -31,7 +31,7 @@
 				ՀԱՅԵՐԵՆ ՏԵՔՍՏԻ ՎԵՐԼՈՒԾԻՉ
 			</b>
 		</p>
-		<form th:action="@{/words/parse/pdf}" method="POST" enctype="multipart/form-data", id="pdf">
+		<form th:action="@{/parse}" method="POST" enctype="multipart/form-data", id="pdf">
 			<input type="file" name="file" th:accept=".pdf" id="file"/>
 			<p>Ներբեռնեք pdf ֆայլը այստեղ</p>
 			<button type="submit" id="button" >Ուղարկել</button>

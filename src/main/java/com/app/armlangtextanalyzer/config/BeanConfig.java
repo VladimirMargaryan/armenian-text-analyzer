@@ -10,9 +10,8 @@ import java.util.Map;
 @Configuration
 public class BeanConfig {
 
-
     @Bean
-    public JSONParser jsonParser(){
+    public JSONParser jsonParser() {
         return new JSONParser();
     }
 
@@ -36,7 +35,7 @@ public class BeanConfig {
         map.put("Կետադրական նշան", "#77c3c5");
         map.put("Ընդունելություն", "paleturquoise");
         map.put("Այլ", "#d2763b");
+
         return map;
     }
-
 }

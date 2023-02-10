@@ -1,8 +1,8 @@
 {
   "properties": [
     {
-      "name": "csv.folder.path",
+      "name": "py.script.file-path",
       "type": "java.lang.String",
-      "description": "Description for csv.folder.path."
-  }
-] }
+      "description": "Description for py.script.file-path."
+    }
+  ] }
